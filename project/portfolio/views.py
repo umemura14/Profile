@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect
 from django.views.generic import View
-from zmq import Message
 from .forms import ContactForm
 from .models import Profile, Work, Experience,Education,Language,Framework
 from django.conf import settings
