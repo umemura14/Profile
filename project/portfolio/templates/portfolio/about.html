@@ -1,0 +1,89 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content%}
+
+<h3 class="mb-4">Profile</h3>
+<div class="mb-5">
+    <div class="row">
+        <div class="col-md-8">
+            <p>{{ profile_data.introduction|linebreaksbr }}</p>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center px-5 py-4">
+                <div class="avatar mb-3">
+                    <img src="{{ profile_data.subimage.url }}" alt="" class="card-img-top rounded-circle">
+                </div>
+                <h5 class="font-weight-bolder">{{ profile_data.name }}</h5>
+                <p class="mb-3 small text-center">{{ profile_data.job|linebreaksbr }}</p>
+                <div class="d-flex justify-content-around">
+                    {% if profile_data.github %}
+                        <a href="{{ profile_data.github }}" target="_blank"><i class="fab fa-github fa-lg rounded btn-dark icon"></i></a>
+                    {% endif %}
+
+                    {% if profile_data.instagram %}
+                        <a href="{{ profile_data.instagram }}" target="_blank"><i class="fab fa-instagram fa-lg rounded btn-primary icon"></i></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 class="mb-4">【職歴】</h3>
+<div class="mb-5">
+    {% for experience in experience_data %}
+        <div class="d-flex justify-content-between">
+            <h5>{{ experience.company }}<span class="small text-secondary"> - {{ experience.occupation }}</span></h5>
+            <p class="mb-1">{{ experience.period }}</p>
+        </div>
+        <p class="mb-1">{{ experience.description }}</p>
+        <p>{{ experience.place }}</p>
+        <hr>
+    {% endfor %}
+</div>
+
+<h3 class="mb-4">【学歴】</h3>
+<div class="mb-5">
+    {% for education in education_data %}
+        <div class="d-flex justify-content-between">
+            <h5>{{ education.school }}<span class="small text-secondary"> - {{ education.cource }}</span></h5>
+            <p class="mb-1">{{ education.period }}</p>
+        </div>
+        <p>{{ education.place }}</p>
+        <hr>
+    {% endfor %}
+</div>
+
+<h3 class="mb-4">【言語スキル】</h3>
+<div class="mb-5">
+    <div class="row">
+        {% for language in language_data %}
+        <div class="col-6 col-md-3">
+            <h5 class="mb-0">{{ language.name }}.<span class="small.secondary"> - {{ language.level }}</span></h5>
+            <div class="d-flex flex-row">
+                <div class="star-rating">
+                    <div class="star-rating-front"></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<h3 class="mb-4">【FW】</h3>
+<div class="mb-5">
+    <div class="row">
+        {% for framework in framework_data %}
+        <div class="col-6 col-md-3">
+            <h5 class="mb-0">{{ framework.name }}.<span class="small.secondary"> - {{ framework.level }}</span></h5>
+            <div class="d-flex flex-row">
+                <div class="star-rating">
+                    <div class="star-rating-front"></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
